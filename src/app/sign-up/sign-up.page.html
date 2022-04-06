@@ -1,3 +1,5 @@
+<!--El header es transparente y únicamente muestra un botón de regreso
+aparte del logo de la empresa y el título-->
 <ion-header>
   <ion-toolbar class="ion-no-border">
     <ion-buttons slot="start">
@@ -5,11 +7,12 @@
         <ion-back-button defaultHref="/home"></ion-back-button>
       </ion-button>
     </ion-buttons>
-
     <ion-img src="assets/images/Large_Logo.png" class="tool-img"></ion-img>
   </ion-toolbar>
 </ion-header>
 
+<!--El contenido es una tarjeta semitransparente que deja ver el formulario
+de registro, además de un "<a>" que manda a la página de loginD-->
 <ion-content class="container ion-padding">
   <ion-card class="centered" disabled="false">
     <ion-card-header>
@@ -17,7 +20,7 @@
     </ion-card-header>
 
     <ion-card-content>
-<<<<<<< HEAD
+
       <form #f="ngForm" (ngSubmit)="onSubmit(f)">
         <ion-label position="floating">Nombre</ion-label>
         <ion-input placeholder="Ingresa tu nombre" [(ngModel)]="name" name="name"></ion-input><br>
@@ -32,58 +35,6 @@
         <ion-input type="password" placeholder="Vuelve a ingresar tu contraseña" [(ngModel)]="password_confirmation" name="conf_password"></ion-input><br>
         <ion-button expand="full" type="submit">Regístrame</ion-button><br><br>
       </form>
-=======
-      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-        <ion-label position="floating">Nombre</ion-label>
-        <ion-input
-          class="ion-margin-bottom"
-          type="text"
-          placeholder="Nombre"
-          name="name"
-          [(ngModel)]="data.name"
-          required
-        ></ion-input>
-        <ion-label position="floating">Correo</ion-label>
-        <ion-input
-          class="ion-margin-bottom"
-          type="email"
-          placeholder="Correo"
-          name="email"
-          [(ngModel)]="data.email"
-          required
-        ></ion-input>
-        <ion-label position="floating">Contraseña</ion-label>
-        <ion-input
-          class="ion-margin-bottom"
-          type="password"
-          placeholder="Contraseña"
-          name="password"
-          [(ngModel)]="data.password"
-          required
-        ></ion-input>
-        <ion-label position="floating">Confirmar contraseña</ion-label>
-        <ion-input
-          class="ion-margin-bottom"
-          type="password"
-          placeholder="Confirmar contraseña"
-          name="password_confirmation"
-          [(ngModel)]="data.password_confirmation"
-          required
-        ></ion-input>
-        <ion-button type="submit" class="ion-margin-top" expand="block"
-          >Registrarse</ion-button
-        >
-      </form>
-      <!-- <ion-label>Nombre</ion-label>
-      <ion-input placeholder="Ingresa tu nombre"></ion-input><br>
-      <ion-label>Correo</ion-label>
-      <ion-input placeholder="Ingresa tu Correo"></ion-input><br>
-      <ion-label>Contraseña</ion-label>
-      <ion-input type="password" placeholder="Ingresa tu contraseña"></ion-input><br>
-      <ion-label>Confirmar contraseña</ion-label>
-      <ion-input type="password" placeholder="Vuelve a ingresar tu contraseña"></ion-input><br>
-      <ion-button expand="full">Regístrame</ion-button><br><br> -->
->>>>>>> ad328e80fe2ba3bfa3e03aa9f924ae36eaf36303
 
       <p>¿Ya cuentas con una cuenta? <a href="/login">Inicia sesión</a></p>
     </ion-card-content>

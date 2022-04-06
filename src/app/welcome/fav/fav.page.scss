@@ -1,18 +1,33 @@
 ion-toolbar {
-    --background: transparent;
-    --ion-color-base: transparent !important;
-    padding: 1rem;
+    --background: rgba(1,1,1,.5);
+    --ion-color-base: rgba(1,1,1,.5) !important;
+    backdrop-filter: blur(5px);
+    position: fixed;
+    padding: 0.3rem;
 }
 
-ion-card-content{
+h1{
+    width: fit-content;
+}
+
+.card{
     padding: 0;
-    position: relative;
+    border-radius: 2%;
+    border-bottom: 1rem;
     color: white;
 }
 
 ion-button{
+    position: absolute;
     --background: #e50914;
     height: 2.5rem;
+    top: 30%;
+    right: 0.7rem;
+}
+
+ion-list {
+    background: rgba(0, 0, 0, 0);
+    padding: 0;
 }
 
 .tool-img{
@@ -20,21 +35,6 @@ ion-button{
     height: 100%;
 }
 
-.center-left{
-    position: absolute;
-    top: 35%;
-    left: 1rem;
-}
-
-.top-left {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-  }
-
-.center-right{
-    color: white;
-    position: absolute;
-    top: 10%;
-    right: 1rem;
+p{
+    padding: 0.5rem;
 }

@@ -1,8 +1,19 @@
 .pp{
-    padding: 2rem;
+    padding: 1rem;
 }
 
 .red-text{
     color: var(--redmex-color);
     font-size: 1.6rem;
+}
+
+.avatar{
+    background-color: var(--redmex-color);
+    font-size: 2.5rem;
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: aliceblue;
 }

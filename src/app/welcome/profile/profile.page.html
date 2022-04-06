@@ -1,41 +1,37 @@
 <ion-content>
+  <!--Muestra el avatar y la info del usuario-->
   <ion-grid>
     <ion-row>
       <ion-col class="pp">
-        <ion-img
-          src="https://ih0.redbubble.net/image.618427277.3222/flat,1000x1000,075,f.u2.jpg"
-        ></ion-img>
+        <div class="avatar">
+          {{User.Substracted}}
+        </div>
       </ion-col>
       <ion-col>
-        <h1>Nombre</h1>
-        <p>Datos del usuario</p>
-        <p>Membresía: Vencida >:v</p>
+        <h1> {{User.name}} </h1>
+        <p>Email: {{User.mail}} </p>
       </ion-col>
     </ion-row>
   </ion-grid>
 
   <ion-accordion-group>
+    <!--Es la configuración, despliega el modificar perfil-->
     <ion-accordion value="config">
       <ion-item slot="header">
         <ion-label
           ><ion-icon name="cog" class="red-text"></ion-icon>
-          Configuración</ion-label
-        >
+          Configuración</ion-label>
       </ion-item>
 
       <ion-list slot="content">
         <ion-item href="/welcome/edit-profile">
           <ion-label>Editar Perfil</ion-label>
         </ion-item>
-<<<<<<< HEAD
-=======
-        <ion-item>
-          <ion-label>Plan de suscripción</ion-label>
-        </ion-item>
->>>>>>> ad328e80fe2ba3bfa3e03aa9f924ae36eaf36303
       </ion-list>
     </ion-accordion>
 
+    <!--Despliega otro accordeon que muestra acerca de y contacto
+    ambos te llevan a la página de redmex-->
     <ion-accordion value="about">
       <ion-item slot="header">
         <ion-label
@@ -55,21 +51,16 @@
       </ion-list>
     </ion-accordion>
 
+    <!--Te permite ver el historial-->
     <ion-item href="/welcome/record">
       <ion-label
         ><ion-icon name="time" class="red-text"></ion-icon> Historial</ion-label
       >
     </ion-item>
-<<<<<<< HEAD
+
+    <!--Es un botón de cerrar sesión-->
     <ion-item (click)="logout()">
       <ion-label><ion-icon name="log-out" class="red-text"></ion-icon>  Cerrar sesión</ion-label>
-=======
-    <ion-item>
-      <ion-label
-        ><ion-icon name="log-out" class="red-text"></ion-icon> Cerrar
-        sesión</ion-label
-      >
->>>>>>> ad328e80fe2ba3bfa3e03aa9f924ae36eaf36303
     </ion-item>
   </ion-accordion-group>
 </ion-content>

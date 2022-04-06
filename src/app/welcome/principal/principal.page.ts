@@ -14,6 +14,9 @@ const imageURL : string = 'http://image.tmdb.org/t/p/original/'
 })
 export class PrincipalPage implements OnInit {
 
+  /*Estas 3 variables inicializan todos los headers, slideOpts sirve para el header principal, configura
+  el autostart del mismo, mientras que las otras 2 variables sirven para establecer distintos tamaños de
+  las tarjetas mostradas*/
   slideOpts = {
     initialSlide: 0,
     speed: 400,
@@ -42,6 +45,7 @@ export class PrincipalPage implements OnInit {
     }
   }
 
+  //Estas variables son de donde los sliders toman la información
   BannerVar : any = []
   Popular : any = []
   popMv : any = []
@@ -53,6 +57,7 @@ export class PrincipalPage implements OnInit {
   
   constructor(private modalCtrl : ModalController, private service : ServiceService) { }
 
+  //Inicializa todas las variables declaradas para su uso
   ngOnInit() {
     this.InitializeBanner()
     this.InitializeTrending()
@@ -62,9 +67,6 @@ export class PrincipalPage implements OnInit {
     this.InitializePopular()
     this.InitializeUpcoming()
     
-  }
-
-  funcionDPrueba(){
   }
 
   //Obtiene las imágenes del banner a partir de la función Trending
@@ -142,7 +144,7 @@ export class PrincipalPage implements OnInit {
 
   //Obtiene los populares
   InitializePopular(){
-    this.service.getPopular('tv').subscribe(pop =>{
+    this.service.getPopular('tv', 1).subscribe(pop =>{
       pop.results.forEach(pop =>{
         this.Popular.push({
           id: pop.id,
@@ -166,7 +168,8 @@ export class PrincipalPage implements OnInit {
     })
   }
 
-  async openShare(id){
+  //Abre el modal de movie
+  async openMovie(id){
     const modal = await this.modalCtrl.create({
       component: MovieModalPagePage,
       componentProps: {reqId: id},
@@ -178,7 +181,8 @@ export class PrincipalPage implements OnInit {
     return await modal.present()
   }
 
-  async openMovie(id){
+  //abre el modal de series
+  async openTv(id){
     const modal = await this.modalCtrl.create({
       component: TvModalPagePage,
       componentProps: {reqId: id},
@@ -190,11 +194,13 @@ export class PrincipalPage implements OnInit {
     return await modal.present()
   }
 
+  /*El banner se jala infoo de todo tipo, así que con esta función determina
+  que tipo de contenido acabas de clickear (Serie o película)D*/
   bannerClick(id, type){
     if(type == "movie"){
-      this.openShare(id)
-    }else if(type == "tv"){
       this.openMovie(id)
+    }else if(type == "tv"){
+      this.openTv(id)
     }
   }
 }

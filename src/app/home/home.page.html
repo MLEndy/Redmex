@@ -1,9 +1,13 @@
+<!--Home se inicia siempre que se abre la app y en caso de tener un token registrado
+en la LocalStorage pasará a redirigirse a otra pantalla, caso contrario, se mantendrá
+aquí-->
+<!--El Toolbar contiene botones de iniciar sesión e ir a la página de Redmex-->
 <ion-header class="ion-no-border toolHeader">
   <ion-toolbar>
     <ion-img src="assets/images/Logo.png" class="tool-img"></ion-img>
     
     <ion-buttons slot="end">
-      <ion-button>RedMex</ion-button>
+      <ion-button href="https://redmex.online">RedMex</ion-button>
       <ion-button (click)="goToLogin()" >Iniciar Sesión</ion-button>
     </ion-buttons>
 
@@ -11,39 +15,39 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="container">
+  <!--Primero se encuentra un slider donde se muestra publicidad al servicio de redMex-->
   <ion-slides pager="true" [options]="slideOptions" class="filler">
-
     <ion-slide >
       <div class="sliden-content">
         <ion-img src="https://i.pinimg.com/originals/fd/a9/66/fda966b027e8278af47dcfcf0aaf071d.jpg"></ion-img>
       </div>
-
       <div class="centered">
         <h1>¡Series y películas ilimitadas y mucho más!</h1><br>
         <p>Disfruta cuando quieras, cancela cuando sea</p>
       </div>
     </ion-slide>
-
     <ion-slide>
       <div class="sliden-content">
         <ion-img src="https://9xwallpapers.com/wp-content/uploads/2021/11/Spider-Man-No-Way-Home-Images-For-Wallpaper.jpg"></ion-img>
       </div>
-
       <div class="centered">
         <h1>Calidad de Servicio</h1><br>
         <p>Mira desde donde sea</p>
       </div>
     </ion-slide>
-
     <ion-slide>
       <div class="sliden-content">
         <ion-img src="https://myandroidwalls.com/wp-content/uploads/2022/01/Background-Spider-Man-No-Way-Home.jpg"></ion-img>
       </div>
+      <div class="centered">
+        <h1>Facilidad de uso</h1><br>
+        <p>Desde cualquier dispositivo</p>
+      </div>
     </ion-slide>
-
   </ion-slides>
 </ion-content>
 
+<!--Un botón que manda a la página de registro-->
 <ion-footer>
   <ion-button expand="full" (click)="goToSignUp()">COMIENZA YA</ion-button>
 </ion-footer>

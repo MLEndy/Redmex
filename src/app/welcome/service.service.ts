@@ -14,7 +14,19 @@ export interface Logger {
   "password" : string
 }
 
+export interface Hist {
+  "media_id" : number,
+  "media_type" : string,
+  "media_name" : string,
+  "media_overview" : string,
+  "media_genre" : string,
+  "media_vote" : string,
+  "media_img" : string,
+  "usuario_email" : string
+}
+
 const apiKey = 'c78cca8bba77868ca68b466c8572b5ce'
+var httpOptions = {}
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +34,15 @@ const apiKey = 'c78cca8bba77868ca68b466c8572b5ce'
 export class ServiceService {
 
   constructor(private http : HttpClient) { }
+
+  InitialiceHeaders(){
+    httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        'Content-Type': 'application/json'
+      }),
+    }
+  }
 
   //----------REQUEST GENERALES-----
 
@@ -35,8 +56,8 @@ export class ServiceService {
     return this.http.get(reqURL)
   }
 
-  getPopular(type: string): Observable <any>{
-    const reqURL = 'https://api.themoviedb.org/3/'+type+'/popular?api_key='+apiKey+'&language=es-MX&page=1'
+  getPopular(type: string, page): Observable <any>{
+    const reqURL = 'https://api.themoviedb.org/3/'+type+'/popular?api_key='+apiKey+'&language=es-MX&page='+page
     return this.http.get(reqURL)
   }
 
@@ -96,10 +117,47 @@ export class ServiceService {
     return this.http.post(reqURL, body)
   }
 
+  getHistorial() : Observable <any>{
+    const reqURL = 'https://redmex.online/api/historial'
+
+    return this.http.get(reqURL, httpOptions)
+  }
+
+  putHistorial(request : Hist) : Observable <any>{
+    const reqURL = 'https://redmex.online/api/historial'
+    return this.http.post(reqURL, request, httpOptions)
+  }
+
+  getFavs() : Observable <any>{
+    const reqURL = 'https://redmex.online/api/favoritos'
+    return this.http.get(reqURL, httpOptions)
+  }
+
+  putFavs(request : Hist) : Observable <any>{
+    const reqURL = 'https://redmex.online/api/favoritos'
+    return this.http.post(reqURL, request, httpOptions)
+  }
+
+  deleteFavs(id) : Observable <any>{
+    const reqURL = 'https://redmex.online/api/favoritos?media_id=' + id
+    return this.http.delete(reqURL, httpOptions)
+  }
+
+  getUser() : Observable <any>{
+    const reqURL = 'https://redmex.online/api/user'
+    return this.http.get(reqURL, httpOptions)
+  }
+
+  updateUser(body) : Observable <any>{
+    const reqURL = 'https://redmex.online/api/user'
+    return this.http.put(reqURL, body, httpOptions)
+  }
+
   loggout(){
     localStorage.removeItem('token');
+    localStorage.removeItem('email');
     return 'Cesión cerrada'
   }
 
-  
+
 }

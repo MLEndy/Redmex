@@ -1,3 +1,4 @@
+<!--En el header muestra la barra de búsqueda, la lista se actualzia conforme se secribe-->
 <ion-content>
   <ion-toolbar>
     <ion-searchbar showCancelButton="focus" (ionChange)="ionChange($event)"></ion-searchbar>
@@ -5,6 +6,7 @@
 
   <br><br><br>
 
+  <!--Lista de resultados, muestra una imagen, título y botón para abrir modal-->
   <ion-list>
 
     <ion-item *ngFor='let value of Values'>

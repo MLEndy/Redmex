@@ -1,3 +1,4 @@
+<!--Muestra el logo y el título de la página-->
 <ion-header class="ion-no-border toolHeader">
   <ion-toolbar>
     <ion-title slot="end">Favoritos</ion-title>
@@ -5,22 +6,31 @@
   </ion-toolbar>
 </ion-header>
 
+<!--Contiene un refresher para actualizar la página, también muestra una tarjeta con los
+favoritos recientes-->
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <br><br><br><br>
   <ion-list>
-    <ion-list-item *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]">
-      <ion-card>
-        <ion-card-content>
-          <ion-img src="https://images6.alphacoders.com/107/thumb-1920-1076158.png"></ion-img>
-          <h1 class="top-left">Coringa</h1>
-          <div class="center-left">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-            <br>
-            <p>Agregado hace 5H</p>
-          </div>
-          <ion-button class="center-right">Ver Ahora <ion-icon name="play-circle"></ion-icon></ion-button>
-        </ion-card-content>
-      </ion-card>
+    <ion-list-item *ngFor="let fav of Favourites.reverse()">
+      <div class="card" style="background:url( {{fav.image}} ); background-size: cover; background-position: center center;">
+        <ion-row>
+          <ion-col>
+            <h1> {{fav.name}} </h1>
+          </ion-col>
+          <ion-col>
+            <ion-button (click)="selectorClick(fav.id, fav.type)">Ver Ahora <ion-icon name="play-circle"></ion-icon></ion-button>
+          </ion-col>
+        </ion-row>
+        <div class="text">
+          <p> {{fav.desc}} </p>
+          <p> {{fav.vote}} </p>
+        </div>
+        </div>
     </ion-list-item>
   </ion-list>
+  <br><br><br>
 
 </ion-content>

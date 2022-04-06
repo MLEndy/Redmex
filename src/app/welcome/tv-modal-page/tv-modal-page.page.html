@@ -1,9 +1,12 @@
+<!--El modal es similar al de películas, sólo que este muestra más información y tiene un slider
+que intercala entre la información y las temporadas, que a su vez despliegan los capítulos-->
 <ion-content class="mdl-cnt">
+  <!--Header general con sus datos principales-->
   <div class="container">
     <ion-img [src]="Serie.image"></ion-img>
     <ion-button class="transparent_btn top-left" (click)="dismiss()"><ion-icon name="close-outline"></ion-icon></ion-button>
     <ion-img class="modal-img modal-centered" src="assets/images/Large_Logo.png"></ion-img>
-    <ion-button class="transparent_btn bottom-right"><ion-icon name="bookmark-outline"></ion-icon></ion-button>
+    <ion-button class="transparent_btn bottom-right" (click)="addFav()"><ion-icon [name]="isInFav"></ion-icon></ion-button>
     <h1 class="bottom-left"> {{Serie.vote}} <ion-icon name="star"></ion-icon></h1>
   </div>
   <div class="ion-padding">
@@ -12,6 +15,7 @@
       <p *ngIf="Serie.prod == true" slot="end">(En emisión)</p>
     </div>
 
+    <!--Segmento que intercala entre info y caps-->
     <ion-segment (ionChange)="segmentChanged($event)" value="info">
       <ion-segment-button value="info">
         <ion-label>Información</ion-label>
@@ -21,6 +25,7 @@
       </ion-segment-button>
     </ion-segment>
 
+    <!--Sección de información-->
     <div *ngIf="selectedSegment == 'info'" class="info">
         <h3 *ngIf="Serie.desc != ''">Descripción</h3>
         <p> {{Serie.desc}} </p>
@@ -34,6 +39,7 @@
         <p *ngFor='let genre of Serie.genres'> {{genre.name}} </p>
     </div>
 
+    <!--Sección de capítulos, contiene acordeones y listas de episodiosA-->
     <div *ngIf="selectedSegment == 'caps'">
       <ion-accordion-group>
         <ion-accordion *ngFor='let season of Season'>
@@ -49,7 +55,7 @@
                 <h4> {{chapter.name}} </h4>
                 <p> {{chapter.overview}} </p>
               </div>
-              <ion-button slot="end" class="btn-start">Iniciar  <ion-icon name="play" class="play-btn"></ion-icon></ion-button>
+              <ion-button slot="end" class="btn-start" (click)="playButton(chapter)">Iniciar  <ion-icon name="play" class="play-btn"></ion-icon></ion-button>
               <br>
             </ion-item>
           </ion-list>

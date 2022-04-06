@@ -1,3 +1,5 @@
+<!--Al igual que la pantalla anterior, muestar un header transparente
+con botón de regreso, logo y título-->
 <ion-header>
   <ion-toolbar class="ion-no-border">
     <ion-buttons slot="start">
@@ -5,17 +7,17 @@
         <ion-back-button defaultHref="/home"></ion-back-button>
       </ion-button>
     </ion-buttons>
-
     <ion-img src="assets/images/Large_Logo.png" class="tool-img"></ion-img>
   </ion-toolbar>
 </ion-header>
 
+<!--El formulario únicamente pide usuario y contraseña, también contiene
+un botón para ir a la pantalla de registro en caso de no tener cuenta-->
 <ion-content class="container ion-padding">
   <ion-card class="centered" disabled="false">
     <ion-card-header>
       <ion-card-title>Iniciar sesión</ion-card-title>
     </ion-card-header>
-<<<<<<< HEAD
   
     <ion-card-content>
       <form (ngSubmit)="login()">
@@ -23,33 +25,7 @@
         <ion-input type="password" placeholder="Ingresa tu contraseña" [(ngModel)]="password" name="password"></ion-input><br>
         <ion-button type="submit">Ingresar</ion-button><br><br>
       </form>
-=======
->>>>>>> ad328e80fe2ba3bfa3e03aa9f924ae36eaf36303
 
-    <ion-card-content>
-      <form #f="ngForm" (ngSubmit)="onSubmit(f)">
-        <ion-input
-          type="email"
-          [(ngModel)]="data.email"
-          required="required"
-          name="email"
-          placeholder="Email"
-          class="ion-margin-top"
-        >
-        </ion-input>
-        <ion-input
-          type="password"
-          [(ngModel)]="data.password"
-          name="password"
-          placeholder="Password"
-          required="required"
-          class="ion-margin-top"
-        >
-        </ion-input>
-        <ion-button type="submit" [disabled]="f.invalid" class="ion-margin-top"
-          >Iniciar sesión
-        </ion-button>
-      </form>
       <p>¿Aún no tienes cuenta?</p>
       <a href="/sign-up">Regístrate aquí</a>
     </ion-card-content>

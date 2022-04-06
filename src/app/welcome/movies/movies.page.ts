@@ -11,8 +11,10 @@ import { ServiceService } from '../service.service';
 
 export class MoviesPage implements OnInit {
 
+  //Esta variable sustituye a el link de la api para obtener las imágenes
   imageURL : string = 'http://image.tmdb.org/t/p/original/'
 
+  //Configuración de los sliders, 1 de banner principal, 3 de tamaños
   bannerOpts = {
     initialSlide: 0,
     speed: 400,
@@ -52,20 +54,24 @@ export class MoviesPage implements OnInit {
     }
   }
 
+  //Variables a tomar para mostrar info
   BannerVar : any = []
   PopularVar : any = []
   UpcomingVar : any = []
   TopVar : any = []
   WatchingVar : any = []
+  AutVar : any = []
 
   constructor(private modalCtrl : ModalController, private service : ServiceService) { }
 
+  //Se inicializan las variables
   ngOnInit() {
     this.InitializeBanner()
     this.InitializePopular()
     this.InitializeUpcoming()
     this.InitializeTop()
     this.InitializeWatchingNow()
+    this.InitializeAut()
   }
 
   //Obtiene 7 imágenes para el banner
@@ -82,7 +88,7 @@ export class MoviesPage implements OnInit {
 
   //Obtiene el slider de Popular (Posters)
   InitializePopular(){
-    this.service.getPopular('movie').subscribe(pop =>{
+    this.service.getPopular('movie', 1).subscribe(pop =>{
       pop.results.forEach(pop =>{
         this.PopularVar.push({
           id: pop.id,
@@ -102,6 +108,18 @@ export class MoviesPage implements OnInit {
             image: this.imageURL + up.backdrop_path
           })
         }
+      })
+    })
+  }
+
+  //Inicializa el slider de selección del autor (poster)
+  InitializeAut(){
+    this.service.getPopular('movie', 2).subscribe(aut =>{
+      aut.results.forEach(aut =>{
+        this.AutVar.push({
+          id: aut.id,
+          poster: this.imageURL + aut.poster_path
+        })
       })
     })
   }
@@ -130,6 +148,7 @@ export class MoviesPage implements OnInit {
     })
   }
 
+  //Abre el modal de películas
   async openMovie(id){
     const modal = await this.modalCtrl.create({
       component: MovieModalPagePage,

@@ -1,10 +1,12 @@
+<!--El Header nomás contiene una barra que muestra el logo de la empresa-->
 <ion-header class="ion-no-border toolHeader">
   <ion-toolbar>
     <ion-img src="assets/images/Logo.png" class="tool-img"></ion-img>
-
   </ion-toolbar>
 </ion-header>
 
+<!--Dentro del contenido, al dar click sobre cualquier elemento se abrirá la info del
+programa o película que se desee ver-->
 <ion-content>
   <!--Slider principal-->
   <ion-slides [options]="slideOpts">
@@ -16,11 +18,11 @@
   </ion-slides>
 
   <h1>La gente está viendo ahora</h1>
-  <!--Slider de películas recientes-->
+  <!--Slider de lo que la gente ve ahora-->
   <ion-slides scrollbar="true" [options]="extraOpts">
 
     <ion-slide *ngFor='let movie of watchNow'>
-      <ion-card class="ion-text-start" (click)="openShare(movie.id)">
+      <ion-card class="ion-text-start" (click)="openMovie(movie.id)">
         <ion-img [src]="movie.poster"></ion-img>
       </ion-card>
     </ion-slide>
@@ -28,10 +30,10 @@
   </ion-slides>
 
   <h1>Series Populares</h1>
-  <!--Slider de películas recientes-->
+  <!--Slider de series populare-->
   <ion-slides scrollbar="true" [options]="movieOpts">
 
-    <ion-slide *ngFor='let object of Popular' (click)="openMovie(object.id)">
+    <ion-slide *ngFor='let object of Popular' (click)="openTv(object.id)">
       <ion-card class="ion-text-start">
         <ion-img [src]="object.image"></ion-img>
       </ion-card>
@@ -41,14 +43,14 @@
 
   <h1>Top 5 en tu país</h1>
 
-  <!--Lista de películas top 10-->
+  <!--Lista de películas top 5-->
   <div class="top10" style="background-image: url( {{topBg}} )">
     <ion-list class="list">
 
       <ion-item lines="none" *ngFor='let top of top10' class="list-item">
 
           <ion-label> {{top.title}} </ion-label>
-          <ion-button slot="end" shape="round" class="transparent_btn" (click)="openShare(top.id)"><ion-icon name="play"></ion-icon></ion-button>
+          <ion-button slot="end" shape="round" class="transparent_btn" (click)="openMovie(top.id)"><ion-icon name="play"></ion-icon></ion-button>
 
       </ion-item>
 
@@ -56,17 +58,19 @@
   </div>
 
   <h1>Sugerencias para ti</h1>
-  <!--Slider de películas recientes-->
+  <!--Slider de sugerencias-->
   <ion-slides scrollbar="true" [options]="extraOpts">
 
     <ion-slide *ngFor='let now of watchNow'>
-      <ion-card class="ion-text-start" (click)="openShare(now.id)">
+      <ion-card class="ion-text-start" (click)="openMovie(now.id)">
         <img [src]="now.poster">
       </ion-card>
     </ion-slide>
 
   </ion-slides>
 
+  <!--El mira ahora es una película en específico que se presenta con un formato
+  visual más atractivoD-->
   <h1>Mira Ahora</h1>
 
   <div class="suggested" style="background-image: url( {{suggested.poster}} );">
@@ -79,7 +83,7 @@
     <div class="centered">
       <h1> {{suggested.title}} </h1>
       <p> {{suggested.desc}} </p>
-      <ion-button class="btn_Normal" (click)="openShare(suggested.id)">
+      <ion-button class="btn_Normal" (click)="openMovie(suggested.id)">
         <ion-icon name="caret-forward-outline"></ion-icon> Iniciar
       </ion-button>
       <ion-button class="transparent_btn">Más Detalles</ion-button>
@@ -91,18 +95,12 @@
   <ion-slides scrollbar="true" [options]="movieOpts">
 
     <ion-slide *ngFor='let up of Upcoming'>
-      <ion-card class="ion-text-start" (click)="openShare(up.id)">
+      <ion-card class="ion-text-start" (click)="openMovie(up.id)">
         <img [src]="up.image">
       </ion-card>
     </ion-slide>
 
   </ion-slides>
-
-  <div class="random">
-    <h1>Reproducción aleatoria</h1>
-    <p>¿No sabes que ver?, prueba nuestra reproducción aleatoria para que puedas conocer nuevas aventuras</p>
-    <ion-button class="btn_Normal">Reproducción aleatoria</ion-button>
-    <br><br><br><br>
-  </div>
+  <br><br><br><br>
 
 </ion-content>

@@ -1,3 +1,6 @@
+<!--Este obtiene una lista de todos los favoritos y los muestra con un
+formato similar al de búsqueda, en películas se mostrará el nombre y en series
+se mostrará el nombre de la serie y el capítulo visto-->
 <ion-header>
   <ion-toolbar class="ion-no-border">
     <ion-buttons slot="start">
@@ -11,5 +14,17 @@
 </ion-header>
 
 <ion-content>
+  <br><br><br>
+  <ion-list>
+
+    <ion-item *ngFor='let h of Hist.reverse()'>
+      <ion-img slot="start" [src]="h.image"></ion-img>
+      <h4> {{h.name}} </h4>
+      <ion-button slot="end" class="btn-start" (click)="buttonSelector(h.id, h.type)">Iniciar  <ion-icon name="play" class="play-btn"></ion-icon></ion-button>
+    </ion-item>
+
+  </ion-list>
+
+  <br><br><br> <br>
 
 </ion-content>

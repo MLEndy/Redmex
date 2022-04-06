@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-<<<<<<< HEAD
 import { Logger, ServiceService } from '../welcome/service.service';
-=======
-import { LoginService } from '../services/login.service';
->>>>>>> ad328e80fe2ba3bfa3e03aa9f924ae36eaf36303
+
 
 @Component({
   selector: 'app-login',
@@ -13,24 +10,18 @@ import { LoginService } from '../services/login.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  data = {
-    name: '',
-    email: '',
-    password: '',
-  };
 
-<<<<<<< HEAD
+  //Variables que obtienen el valor de los inputs
   email
   password
 
   constructor(private router : Router, private service : ServiceService) { }
-=======
-  constructor(private api: LoginService, private router: Router) {}
->>>>>>> ad328e80fe2ba3bfa3e03aa9f924ae36eaf36303
 
   ngOnInit() {}
 
-<<<<<<< HEAD
+  //Al dar click en login, se guarda un archivo de tipo Logger y se llama al login de la
+  //api, en caso de acceder, se guarda el token y el email dentro de un LocalStorage, 
+  //Después, manda a la página principal de la app
   login(){
     const body : Logger = {
       "email" : this.email,
@@ -40,18 +31,10 @@ export class LoginPage implements OnInit {
     this.service.login(body).subscribe(response =>{
       if(response.status == 'ok'){
         localStorage.setItem("token", response.token)
+        localStorage.setItem("email", body.email)
         this.router.navigate(['/welcome/principal'])
       }
     })
-=======
-  onSubmit(form: NgForm) {
-    this.api.login(form.value).subscribe((res) => {
-      console.log(res);
-      res.status == 'ok'
-        ? this.goToWelcome()
-        : alert('Usuario o contraseña incorrectos');
-    });
->>>>>>> ad328e80fe2ba3bfa3e03aa9f924ae36eaf36303
   }
 
   goToWelcome() {

@@ -10,8 +10,10 @@ import { TvModalPagePage } from '../tv-modal-page/tv-modal-page.page';
 })
 export class TvshowPage implements OnInit {
 
+  //Imagen para ahorrarse escribir esto todo el tiempo
   imageURL : string = 'http://image.tmdb.org/t/p/original/'
 
+  //1 configura banner, 3 tamaños de sliders
   bannerOpts = {
     initialSlide: 0,
     speed: 400,
@@ -51,20 +53,24 @@ export class TvshowPage implements OnInit {
     }
   }
 
+  //Mostrar info
   BannerVar: any = []
   EmitionVar : any = []
   PopularVar : any = []
   AirVar : any = []
   TopVar : any = []
+  AutVar : any = []
 
   constructor(private modalCtrl : ModalController, private service : ServiceService) { }
 
+  //Inicializar variables
   ngOnInit() {
     this.InitializeBanner()
     this.InitializeInEmition()
     this.InitializePopular()
     this.InitializeToday()
     this.InitializeTop()
+    this.InitializeAut()
   }
 
   //Inicializa el Banner con los datos de series estrenadas ese día (Poster)
@@ -95,12 +101,26 @@ export class TvshowPage implements OnInit {
 
   //Inicializa con series populares (Poster)
   InitializePopular(){
-    this.service.getPopular('tv').subscribe(pop =>{
+    this.service.getPopular('tv', 1).subscribe(pop =>{
       pop.results.forEach(pop =>{
         this.PopularVar.push({
           id: pop.id,
           poster: this.imageURL + pop.poster_path
         })
+      })
+    })
+  }
+
+  //Inicializa Selección del autor (Poster)
+  InitializeAut(){
+    this.service.getPopular('tv', 2).subscribe(aut =>{
+      aut.results.forEach(aut =>{
+        if(aut.poster_path != null){
+          this.AutVar.push({
+            id: aut.id,
+            poster: this.imageURL + aut.poster_path
+          })
+        }
       })
     })
   }
@@ -133,6 +153,7 @@ export class TvshowPage implements OnInit {
     })
   }
 
+  //Abre el modal de series
   async openTv(id){
     const modal = await this.modalCtrl.create({
       component: TvModalPagePage,

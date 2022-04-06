@@ -1,3 +1,6 @@
+<!--Edit profile muestra un formulario exactamente igual al de registrar, la única diferencia
+es el botón de cancelar en la parte inferior de la tarjeta, fuera de eso, los cambios son
+más notables en el archivo ts-->
 <ion-header>
   <ion-toolbar class="ion-no-border">
     <ion-buttons slot="start">
@@ -17,17 +20,19 @@
     </ion-card-header>
   
     <ion-card-content>
-      <ion-label>Nombre</ion-label>
-      <ion-input placeholder="Ingresa tu nombre"></ion-input><br>
-      <ion-label>Correo</ion-label>
-      <ion-input placeholder="Ingresa tu Correo"></ion-input><br>
-      <ion-label>Contraseña</ion-label>
-      <ion-input type="password" placeholder="Ingresa tu contraseña"></ion-input><br>
-      <ion-label>Confirmar contraseña</ion-label>
-      <ion-input type="password" placeholder="Vuelve a ingresar tu contraseña"></ion-input><br>
-      <ion-button expand="full">Regístrame</ion-button><br><br>
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <ion-label>Nombre</ion-label>
+        <ion-input placeholder="Ingresa tu nombre" [(ngModel)]="name" name="name"></ion-input><br>
+        <ion-label>Correo</ion-label>
+        <ion-input placeholder="Ingresa tu Correo" [(ngModel)]="email" name="email" autocomplete="off"></ion-input><br>
+        <ion-label>Contraseña</ion-label>
+        <ion-input type="password" placeholder="Ingresa tu contraseña" [(ngModel)]="pass" name="pass" value=""></ion-input><br>
+        <ion-label>Confirmar contraseña</ion-label>
+        <ion-input type="password" placeholder="Vuelve a ingresar tu contraseña" [(ngModel)]="conf" name="conf" value=""></ion-input><br>
+        <ion-button expand="full" type="submit">Guardar Cambios</ion-button><br><br>
+      </form>
 
-      <p>¿Ya cuentas con una cuenta? <a href="/login">Inicia sesión</a></p>
+      <a href="/welcome/principal">Cancelar</a>
     </ion-card-content>
   </ion-card>
 </ion-content>

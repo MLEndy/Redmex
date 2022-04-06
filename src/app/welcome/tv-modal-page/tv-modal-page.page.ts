@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { ServiceService } from '../service.service';
+import { Hist, ServiceService } from '../service.service';
 
 @Component({
   selector: 'app-tv-modal-page',
@@ -9,10 +9,12 @@ import { ServiceService } from '../service.service';
 })
 export class TvModalPagePage implements OnInit {
 
+  //Datos
   reqId
-  Serie = {}
+  Serie : any = {}
   Season = []
   selectedSegment : string = 'info'
+  isInFav : string = 'bookmark-outline'
 
   constructor(private modalController : ModalController, private service : ServiceService) { }
 
@@ -20,6 +22,7 @@ export class TvModalPagePage implements OnInit {
     this.InitializeSerie()
   }
 
+  //Inicializa la serie, de ahí obtiene las temporadas
   InitializeSerie(){
     this.service.getOneSerie(this.reqId).subscribe(serie =>{
       this.Serie = {
@@ -39,6 +42,7 @@ export class TvModalPagePage implements OnInit {
     })
   }
 
+  //Guarda las temporadas en otra variable para mostrarlas y cada una tiene su lista de capítulos
   InitializeSeasons(seasons: number){
     for(let i = 0; i < seasons; i++){
       this.service.getTvSeasons(this.reqId, (i+1)).subscribe(season =>{
@@ -50,9 +54,63 @@ export class TvModalPagePage implements OnInit {
           chapters: season.episodes,
         })
       })
+
+      this.service.getFavs().subscribe(response => {
+        response.data.forEach(element => {
+          if(element.media_id == this.Serie.id){
+            this.isInFav = 'bookmark'
+          }
+        });
+      })
     }
   }
 
+  //Al dar en play guarda en el historial el nombre de la serie y capítulo
+  playButton(chapter){
+    const hist : Hist = {
+      "media_id" : this.Serie.id,
+      "media_type" : 'tv',
+      "media_name" : this.Serie.name +': '+ chapter.name,
+      "media_overview" : this.Serie.desc,
+      "media_genre" : this.Serie.genres[0].name,
+      "media_vote" : this.Serie.vote,
+      "media_img" : this.Serie.image,
+      "usuario_email" : localStorage.getItem("email")
+    }
+
+    this.service.putHistorial(hist).subscribe(Response =>{
+      if(Response.status == 'ok'){
+        this.dismiss()
+      }
+    })
+  }
+
+  //Al dar en favoritos guarda nomás la serie en favoritos
+  addFav(){
+    const hist : Hist = {
+      "media_id" : this.Serie.id,
+      "media_type" : 'tv',
+      "media_name" : this.Serie.name,
+      "media_overview" : this.Serie.desc,
+      "media_genre" : this.Serie.genres[0].name,
+      "media_vote" : this.Serie.vote,
+      "media_img" : this.Serie.image,
+      "usuario_email" : localStorage.getItem("email")
+    }
+
+    //Determina si ya está en favorito o no para dar un aviso de forma visual
+    if(this.isInFav == 'bookmark'){
+      this.service.deleteFavs(this.Serie.id).subscribe(response =>{
+        this.isInFav = 'bookmark-outline'
+      })
+    }else{
+      this.service.putFavs(hist).subscribe(Response =>{
+        this.isInFav = 'bookmark'
+      })
+    }
+  }
+
+  //Cierra el modal
   dismiss() {
     this.modalController.dismiss({
       'dismissed': true

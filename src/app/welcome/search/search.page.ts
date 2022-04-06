@@ -10,6 +10,7 @@ import { ServiceService } from '../service.service';
   styleUrls: ['./search.page.scss'],
 })
 export class SearchPage implements OnInit {
+  //Define los resultados de búsqueda
   Values : any = []
 
   constructor(private service : ServiceService, private modalCtrl : ModalController ) { }
@@ -18,6 +19,7 @@ export class SearchPage implements OnInit {
 
   }
 
+  //Realiza una búsqueda y ajusta el valor de name o title según el tipo de resultado
   ionChange(event){
     if(event.detail.value != ''){
       this.Values = []
@@ -45,7 +47,8 @@ export class SearchPage implements OnInit {
     }
   }
 
-  async openShare(id){
+  //Abre modal de movie
+  async openMovie(id){
     const modal = await this.modalCtrl.create({
       component: MovieModalPagePage,
       componentProps: {reqId: id},
@@ -57,7 +60,8 @@ export class SearchPage implements OnInit {
     return await modal.present()
   }
 
-  async openMovie(id){
+  //Abre modal de tv
+  async openTv(id){
     const modal = await this.modalCtrl.create({
       component: TvModalPagePage,
       componentProps: {reqId: id},
@@ -69,11 +73,12 @@ export class SearchPage implements OnInit {
     return await modal.present()
   }
 
+  //Determina si lo que se ha seleccionado es una película o serie
   buttonSelector(id, type){
     if(type == "movie"){
-      this.openShare(id)
-    }else if(type == "tv"){
       this.openMovie(id)
+    }else if(type == "tv"){
+      this.openTv(id)
     }
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiceService } from './service.service';
 
 @Component({
   selector: 'app-welcome',
@@ -8,25 +9,12 @@ import { Component, OnInit } from '@angular/core';
 
 export class WelcomePage implements OnInit {
 
-  slideOpts = {
-    initialSlide: 0,
-    speed: 400
-  }
+  constructor(private service : ServiceService) { }
 
-  movieOpts = {
-    slidesPerView: 1.6,
-    coverflowEffect: {
-      rotate: 50,
-      stretch: 0,
-      depth: 100,
-      modifier: 1,
-      slideShadows: true,
-    }
-  }
-
-  constructor() { }
-
+  //Carga una variable llamada que funciona como Header dentro del
+  //HttpClient para poder realizar las consultas
   ngOnInit() {
+    this.service.InitialiceHeaders()
   }
 
 }

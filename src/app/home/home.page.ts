@@ -11,6 +11,7 @@ export class HomePage {
 
   @ViewChild('slideWithNav', { static: false }) slideWithNav: IonSlides;
 
+  //Configuración inicial del slider
   slideOptions = {
     initialSlide: 0,
     slidesPerView: 1,
@@ -18,8 +19,10 @@ export class HomePage {
   };
 
   ngOnInit(){
+    //Al iniciar detecta si existe el token para dirigirse
+    //a la pantalla principal
     if(localStorage.getItem('token') == null){
-      console.log("noai token")
+      
     }else{
       this.router.navigate(['welcome/principal'])
     }
@@ -27,6 +30,7 @@ export class HomePage {
 
   constructor(private router : Router) {}
 
+  //Funciones que redirigen al login y página de registro respectivamente
   goToLogin(){
     this.router.navigate(['/login'])
   }
