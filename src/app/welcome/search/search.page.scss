@@ -1,0 +1,33 @@
+ion-toolbar{
+    position: fixed;
+    --background: rgba(0,0,0,.5);
+    backdrop-filter: blur(5px);
+}
+
+ion-searchbar{
+    --background: transparent;
+    --box-shadow: 0;
+    transition: all 0.4s;
+}
+
+ion-searchbar:hover{
+    border: solid 1px var(--redmex-color);
+    color: var(--redmex-text);
+}
+
+ion-img{
+    width: 7rem;
+    margin: 0;
+}
+ h4{
+     margin-left: 0.2rem;
+     margin-right: 0.3rem;
+}
+
+ ion-button{
+    margin: 0 !important;
+    height: 2.5rem;
+    border: 0px !important;
+    --background: white;
+    color: black;
+}

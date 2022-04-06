@@ -1,0 +1,15 @@
+ion-tab-bar{
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    --color: white;
+    --color-selected: #e50914;
+    --background: rgba(1,1,1,0.3);
+    backdrop-filter: blur(5px);
+}
+
+ion-icon{
+    font-size: 2rem;
+}

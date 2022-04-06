@@ -1,0 +1,60 @@
+ion-content{
+    --background: rgba(1,1,1,0.4);
+    
+}
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.btn_Normal{
+    --background: #e50914;
+    height: 2.5rem;
+}
+
+.transparent_btn{
+    --background: transparent;
+    --box-shadow: none !important;
+    width: fit-content;
+}
+
+.top-left {
+    position: absolute;
+    top: 0.5rem;
+    left: 0rem;
+    font-size: 2rem;
+}
+  
+
+.bottom-right {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 1rem;
+    font-size: 2rem;
+}
+
+.bottom-left {
+    position: absolute;
+    background-color: #e50914;
+    font-size: 1rem;
+    border-radius: 2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    bottom: 0.5rem;
+    left: 1rem;
+}
+
+.modal-centered {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+}
+
+.modal-img{
+    width: 30%;
+}
+

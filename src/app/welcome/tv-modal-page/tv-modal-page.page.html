@@ -1,0 +1,61 @@
+<ion-content class="mdl-cnt">
+  <div class="container">
+    <ion-img [src]="Serie.image"></ion-img>
+    <ion-button class="transparent_btn top-left" (click)="dismiss()"><ion-icon name="close-outline"></ion-icon></ion-button>
+    <ion-img class="modal-img modal-centered" src="assets/images/Large_Logo.png"></ion-img>
+    <ion-button class="transparent_btn bottom-right"><ion-icon name="bookmark-outline"></ion-icon></ion-button>
+    <h1 class="bottom-left"> {{Serie.vote}} <ion-icon name="star"></ion-icon></h1>
+  </div>
+  <div class="ion-padding">
+    <div class="nested-title">
+      <h1> {{Serie.name}} </h1>
+      <p *ngIf="Serie.prod == true" slot="end">(En emisión)</p>
+    </div>
+
+    <ion-segment (ionChange)="segmentChanged($event)" value="info">
+      <ion-segment-button value="info">
+        <ion-label>Información</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="caps">
+        <ion-label>Capítulos</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <div *ngIf="selectedSegment == 'info'" class="info">
+        <h3 *ngIf="Serie.desc != ''">Descripción</h3>
+        <p> {{Serie.desc}} </p>
+        <h3>Primer emisión</h3>
+        <p> {{Serie.firstDate}} </p>
+        <h3>Último episodio</h3>
+        <p> {{Serie.lastDate}} </p>
+        <h3>Creado por</h3>
+        <p *ngFor='let by of Serie.aut'> {{by.name}} </p>
+        <h3>Géneros</h3>
+        <p *ngFor='let genre of Serie.genres'> {{genre.name}} </p>
+    </div>
+
+    <div *ngIf="selectedSegment == 'caps'">
+      <ion-accordion-group>
+        <ion-accordion *ngFor='let season of Season'>
+          <ion-item slot="header" class="list-title">
+            <ion-label > {{season.name}} </ion-label>
+          </ion-item>
+      
+          <ion-list slot="content" lines="none" *ngFor='let chapter of season.chapters' class="list-item">
+            <ion-item>
+              <br>
+              <ion-img *ngIf="season.temporal" slot="start" [src]="season.poster"></ion-img>
+              <div>
+                <h4> {{chapter.name}} </h4>
+                <p> {{chapter.overview}} </p>
+              </div>
+              <ion-button slot="end" class="btn-start">Iniciar  <ion-icon name="play" class="play-btn"></ion-icon></ion-button>
+              <br>
+            </ion-item>
+          </ion-list>
+        </ion-accordion>
+      </ion-accordion-group>
+    </div>
+
+  </div>
+</ion-content>

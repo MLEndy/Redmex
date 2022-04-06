@@ -1,0 +1,49 @@
+<ion-header class="ion-no-border toolHeader">
+  <ion-toolbar>
+    <ion-img src="assets/images/Logo.png" class="tool-img"></ion-img>
+    
+    <ion-buttons slot="end">
+      <ion-button>RedMex</ion-button>
+      <ion-button (click)="goToLogin()" >Iniciar Sesión</ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="container">
+  <ion-slides pager="true" [options]="slideOptions" class="filler">
+
+    <ion-slide >
+      <div class="sliden-content">
+        <ion-img src="https://i.pinimg.com/originals/fd/a9/66/fda966b027e8278af47dcfcf0aaf071d.jpg"></ion-img>
+      </div>
+
+      <div class="centered">
+        <h1>¡Series y películas ilimitadas y mucho más!</h1><br>
+        <p>Disfruta cuando quieras, cancela cuando sea</p>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="sliden-content">
+        <ion-img src="https://9xwallpapers.com/wp-content/uploads/2021/11/Spider-Man-No-Way-Home-Images-For-Wallpaper.jpg"></ion-img>
+      </div>
+
+      <div class="centered">
+        <h1>Calidad de Servicio</h1><br>
+        <p>Mira desde donde sea</p>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="sliden-content">
+        <ion-img src="https://myandroidwalls.com/wp-content/uploads/2022/01/Background-Spider-Man-No-Way-Home.jpg"></ion-img>
+      </div>
+    </ion-slide>
+
+  </ion-slides>
+</ion-content>
+
+<ion-footer>
+  <ion-button expand="full" (click)="goToSignUp()">COMIENZA YA</ion-button>
+</ion-footer>

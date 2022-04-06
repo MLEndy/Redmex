@@ -1,0 +1,23 @@
+<ion-content>
+  <ion-toolbar>
+    <ion-searchbar showCancelButton="focus" (ionChange)="ionChange($event)"></ion-searchbar>
+  </ion-toolbar>
+
+  <br><br><br>
+
+  <ion-list>
+
+    <ion-item *ngFor='let value of Values'>
+      <ion-img slot="start" [src]="value.poster"></ion-img>
+      <div>
+        <h4 *ngIf="value.type == 'tv'"> {{value.name}} </h4>
+        <h4 *ngIf="value.type == 'movie'"> {{value.name}} </h4>
+      </div>
+      <ion-button slot="end" class="btn-start" (click)="buttonSelector(value.id, value.type)">Iniciar  <ion-icon name="play" class="play-btn"></ion-icon></ion-button>
+    </ion-item>
+
+  </ion-list>
+
+  <br><br><br><br>
+
+</ion-content>

@@ -1,0 +1,95 @@
+<ion-header class="ion-no-border toolHeader">
+  <ion-toolbar>
+    <ion-img src="assets/images/Logo.png" class="tool-img"></ion-img>
+    
+    <ion-buttons slot="end">
+      <ion-searchbar showCancelButton="focus" placeholder="Buscar" class="search"></ion-searchbar>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!--Header de Películas-->
+  <ion-slides [options] = "bannerOpts">
+    <ion-slide *ngFor='let banner of BannerVar' (click)="openTv(banner.id)">
+      <ion-img [src]="banner.poster"></ion-img>
+    </ion-slide>
+
+  </ion-slides>
+
+  <h1>Series en Emisión</h1>
+  <!--Slider de películas Populares-->
+  <ion-slides scrollbar="true" [options]="movieOpts">
+
+    <ion-slide *ngFor='let emit of EmitionVar'>
+      <ion-card class="ion-text-start" id="trigger-button" (click)="openTv(emit.id)">
+        <img [src]="emit.image">
+      </ion-card>
+    </ion-slide>
+
+  </ion-slides>
+
+  <h1>Series Populares</h1>
+  <!--Slider de proximamente-->
+  <ion-slides scrollbar="true" [options]="extraOpts2">
+
+    <ion-slide *ngFor='let pop of PopularVar'>
+      <ion-card class="ion-text-start" id="trigger-button" (click)="openTv(pop.id)">
+        <img [src]="pop.poster">
+      </ion-card>
+    </ion-slide>
+
+  </ion-slides>
+
+  <!--Slider con efecto bien bonis-->
+  <ion-slides scrollbar="true" [options]="extraOpts" class="carding">
+
+    <ion-slide>
+      <ion-card class="ion-text-center">
+        <ion-img src="assets/images/Large_Logo.png" class="tool-img"></ion-img>
+        <h3>Selección del autor</h3>
+        <p>Disfruta con los estrenos que seleccionamos para ti</p>
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide *ngFor='let i of [1,2,3,4,5,6,7,8,9,10]'>
+      <ion-card class="ion-text-start" id="trigger-button">
+        <img src="https://cdn.shopify.com/s/files/1/0057/3728/3618/products/5cae019e64c0ee10ead36a00e60f0137_8b8714b2-b733-44ec-8f3f-f131a04915b5_240x360_crop_center.progressive.jpg?v=1614780406">
+      </ion-card>
+    </ion-slide>
+
+  </ion-slides>
+
+  <h1>Estrenos: Hoy</h1>
+  <!--Slider de películas recientes-->
+  <ion-slides scrollbar="true" [options]="extraOpts">
+
+    <ion-slide *ngFor='let air of AirVar'>
+      <ion-card class="ion-text-start" id="trigger-button" (click)="openTv(air.id)">
+        <img [src]="air.poster">
+      </ion-card>
+    </ion-slide>
+
+  </ion-slides>
+
+  <h1>Mejores lanzamientos de la historia</h1>
+  <!--Slider de películas recientes-->
+  <ion-slides scrollbar="true" [options]="movieOpts">
+
+    <ion-slide *ngFor='let top of TopVar'>
+      <ion-card class="ion-text-start" id="trigger-button" (click)="openTv(top.id)">
+        <img [src]="top.image">
+      </ion-card>
+    </ion-slide>
+
+  </ion-slides>
+
+  <div class="random">
+    <h1>Reproducción aleatoria</h1>
+    <p>Quieres ver una película, ¿Pero no sabes cual?, prueba nuestra reproducción aleatoria y disfruta de una cita a ciegas con nuestro catálogo</p>
+    <ion-button class="btn_Normal">Reproducción aleatoria</ion-button>
+    <br><br><br><br>
+  </div>
+</ion-content>

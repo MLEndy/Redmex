@@ -1,0 +1,50 @@
+ion-toolbar {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+    padding: 1rem;
+    position: fixed;
+}
+
+ion-searchbar{
+    transition: all 0.3s;
+}
+
+ion-searchbar:hover{
+    background-color: rgba($color: #141414, $alpha: 0.6);
+    border: solid 1px #e50914;
+    backdrop-filter: blur(5px);
+}
+
+ion-card{
+    --background: rgba(1,1,1,0);
+    color: white;
+    box-shadow: none !important;
+    transition: all 0.3s;
+}
+
+ion-card:hover{
+    transform: scale(1.15);
+}
+
+.search{
+    --background: rgba(1,1,1,0);
+    --box-shadow: 0;
+}
+
+.tool-img{
+    width: 3rem;
+    height: 100%;
+}
+
+.btn_Normal{
+    --background: #e50914;
+    height: 2.5rem;
+}
+
+.random{
+    padding: 2rem;
+}
+
+.carding{
+    background:linear-gradient(70deg, #b1060f 1%, #391e4d, var(--ion-background-color) 75%);
+}

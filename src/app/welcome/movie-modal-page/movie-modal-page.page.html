@@ -1,0 +1,17 @@
+<ion-content class="mdl-cnt">
+  <div class="container">
+    <ion-img [src]="movie.image"></ion-img>
+    <ion-button class="transparent_btn top-left" (click)="dismiss()"><ion-icon name="close-outline"></ion-icon></ion-button>
+    <ion-img class="modal-img modal-centered" src="assets/images/Large_Logo.png"></ion-img>
+    <ion-button class="transparent_btn bottom-right"><ion-icon name="bookmark-outline"></ion-icon></ion-button>
+    <h1 class="bottom-left"> {{movie.vote}} <ion-icon name="star"></ion-icon></h1>
+  </div>
+  <div class="ion-padding">
+    <ion-button class="btn_Normal" slot="end" expand="full">Mira Ahora</ion-button>
+    <h1> {{movie.title}} </h1>
+    <p> {{movie.desc}} </p>
+    <p>Fecha de subida: {{movie.date}} </p>
+    <h1>Géneros</h1>
+    <p *ngFor='let genre of movie.genres'> {{genre.name}} </p>
+  </div>
+</ion-content>
